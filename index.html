@@ -71,6 +71,7 @@
 <main>
   <h1>Pīnyīn Sprint</h1>
   <p class="meta">Evening · ~15 min · resumable anywhere in a day</p>
+  <p class="meta" id="counter">31 words known · 2,969 to go — cumulative, never resets</p>
 
   <h2>Days</h2>
   <div class="card">
@@ -88,7 +89,7 @@
 <script>
 (function () {
   "use strict";
-  var DAYS = [{"file": "artifact0.html", "label": "Artifact 0 \u2014 preview (done)", "date": ""}, {"file": "day03.html", "label": "Day 3", "date": "Mon Sep 14"}, {"file": "day04.html", "label": "Day 4", "date": "Tue Sep 15"}, {"file": "day05.html", "label": "Day 5", "date": "Wed Sep 16"}, {"file": "day06.html", "label": "Day 6", "date": "Thu Sep 17"}];
+  var DAYS = [{"file": "artifact0.html", "label": "Artifact 0 \u2014 preview (done)", "date": ""}, {"file": "day03.html", "label": "Day 3", "date": "Mon Sep 14"}, {"file": "day04.html", "label": "Day 4", "date": "Tue Sep 15"}, {"file": "day05.html", "label": "Day 5", "date": "Wed Sep 16"}, {"file": "day06.html", "label": "Day 6", "date": "Thu Sep 17"}, {"file": "day07.html", "label": "Day 7", "date": "Fri Sep 18"}, {"file": "day08.html", "label": "Day 8", "date": "Sat Sep 19"}, {"file": "sunday.html", "label": "Sunday \u2014 consolidation + S1 sweep", "date": "Sun Sep 20"}];
   var list = document.getElementById("daylist");
   DAYS.forEach(function (d) {
     var li = document.createElement("li");
