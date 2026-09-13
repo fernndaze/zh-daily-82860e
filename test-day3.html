@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 3 — Pīnyīn Sprint</title>
+<meta name="description" content="Daily Mandarin artifact — day 3">
+<style>
+  :root {
+    color-scheme: dark;
+    --fs-meta: 13px; --fs-body: 17px; --fs-h3: 20px;
+    --fs-h2: 22px; --fs-h1: 28px; --fs-display: 34px;
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+    --space-5: 24px; --space-6: 32px; --space-7: 48px;
+    --radius-s: 8px; --radius-l: 12px;
+    --shadow-1: 0 1px 3px rgba(0,0,0,.4);
+    --bg: #14171b; --surface: #1d2127; --border: #333a43;
+    --text: #e9e7e3; --text-2: #a8adb5;
+    --accent: #35b8ae; --accent-contrast: #0c1513;
+    --ok-text: #7fd9d0; --ok-bg: #16332f; --ok-border: #1f4a45;
+    --warn-text: #ecd490; --warn-bg: #322a12; --warn-border: #8a742c;
+    --danger-text: #f8b4b4; --danger-bg: #3a1416; --danger-border: #6b2326;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--fs-body); line-height: 1.55;
+    hyphens: none; overflow-wrap: break-word;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  main {
+    max-width: 40rem; margin: 0 auto;
+    padding-top: var(--space-4);
+    padding-bottom: max(var(--space-6), calc(env(safe-area-inset-bottom, 0px) + var(--space-5)));
+    padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  a { color: var(--accent); text-decoration: underline; }
+  .pinyin { font-weight: 650; }
+  h2 {
+    font-size: var(--fs-h2); line-height: 1.25; margin: var(--space-6) 0 var(--space-3);
+    padding-top: var(--space-4); border-top: 3px solid var(--accent);
+    scroll-margin-top: var(--space-4); text-wrap: balance;
+  }
+  h3 { font-size: var(--fs-h3); line-height: 1.3; margin: var(--space-4) 0 var(--space-2); }
+  p { margin: 0 0 var(--space-3); }
+  .meta { color: var(--text-2); font-size: var(--fs-meta); }
+  button {
+    font: inherit; color: inherit; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius-s);
+    min-height: 44px; padding: var(--space-2) var(--space-3);
+    -webkit-tap-highlight-color: transparent; cursor: pointer;
+  }
+  button.primary { background: var(--accent); color: var(--accent-contrast); border-color: var(--accent); font-weight: 650; }
+  button.play {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; padding: 0; flex: none;
+  }
+  button:disabled { opacity: .45; }
+  .ic { width: 1.2em; height: 1.2em; flex: none; vertical-align: -0.22em; }
+
+  header.top { padding: var(--space-3) 0 var(--space-4); }
+  header.top .eyebrow { color: var(--text-2); font-size: var(--fs-meta); margin: 0 0 var(--space-1); }
+  header.top h1 { font-size: var(--fs-h1); line-height: 1.2; margin: 0; text-wrap: balance; }
+  .progressbar { height: 6px; background: var(--surface); border-radius: var(--radius-s); margin: var(--space-3) 0; overflow: hidden; }
+  .progressbar > div { height: 100%; background: var(--accent); width: 0%; transition: width .3s; }
+  .resume-chip {
+    display: none; align-items: center; gap: var(--space-2);
+    background: var(--ok-bg); border: 1px solid var(--ok-border); color: var(--ok-text);
+    border-radius: var(--radius-s); padding: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-4); min-height: 44px; text-decoration: none; font-weight: 600;
+  }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-l); padding: var(--space-4);
+    margin: 0 0 var(--space-4);
+  }
+  .word-head { display: flex; align-items: center; gap: var(--space-3); }
+  .word-head .py {
+    font-size: var(--fs-display); line-height: 1.2; font-weight: 700; flex: 1;
+    min-width: 0;
+  }
+  .word-en { font-size: var(--fs-h3); margin: var(--space-2) 0 0; }
+  .note { color: var(--warn-text); background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: var(--radius-s); padding: var(--space-2) var(--space-3); margin: var(--space-3) 0 0; font-size: var(--fs-body); }
+  .example { margin: var(--space-3) 0 0; padding-top: var(--space-3); border-top: 1px solid var(--border); }
+  .example .expy { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-h3); font-weight: 650; }
+  .example .expy span { flex: 1; }
+
+  .quiz-card { text-align: left; }
+  .quiz-kind { font-size: var(--fs-meta); color: var(--text-2); margin: 0 0 var(--space-2); }
+  .quiz-prompt { font-size: var(--fs-h2); line-height: 1.3; font-weight: 700; margin: 0 0 var(--space-4); }
+  .choices { display: grid; gap: var(--space-2); }
+  .choice { text-align: left; font-size: var(--fs-body); }
+  .choice.correct { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-text); }
+  .choice.wrong { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger-text); }
+  .sayfirst { color: var(--text-2); font-size: var(--fs-meta); margin: 0 0 var(--space-2); }
+  .typebox input {
+    font: inherit; font-size: var(--fs-body); width: 100%;
+    background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--radius-s);
+    padding: var(--space-3); min-height: 44px;
+  }
+  .typebox .render { font-size: var(--fs-h2); font-weight: 700; min-height: 1.4em; margin: var(--space-2) 0; color: var(--accent); }
+  .feedback { border-radius: var(--radius-s); padding: var(--space-3); margin-top: var(--space-3); }
+  .feedback.ok { background: var(--ok-bg); border: 1px solid var(--ok-border); color: var(--ok-text); }
+  .feedback.bad { background: var(--danger-bg); border: 1px solid var(--danger-border); color: var(--danger-text); }
+  .feedback .fb-line { display: flex; align-items: center; gap: var(--space-2); margin: var(--space-1) 0; }
+  .feedback .fb-line span { flex: 1; }
+
+  .sweep-item { display: flex; align-items: center; gap: var(--space-3); }
+  .sweep-item .py { font-size: var(--fs-h1); font-weight: 700; flex: 1; min-width: 0; }
+  .sweep-btns { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-top: var(--space-4); }
+
+  .glue-drill { margin-top: var(--space-3); }
+  .blank { color: var(--accent); font-weight: 700; }
+
+  .reveal-item { margin-bottom: var(--space-3); }
+  .reveal-item .rv-py { font-size: var(--fs-h3); font-weight: 650; }
+  .reveal-item .rv-en { display: none; color: var(--text-2); margin-top: var(--space-1); }
+  .reveal-item.open .rv-en { display: block; }
+  .reveal-item button { min-height: 44px; width: 100%; text-align: left; }
+
+  .resultbox { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-l); padding: var(--space-4); }
+  #resultline {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--fs-meta);
+    background: var(--bg); border-radius: var(--radius-s); padding: var(--space-3);
+    overflow-wrap: break-word; margin: var(--space-3) 0;
+  }
+  .result-actions { display: flex; gap: var(--space-2); }
+  .result-actions button { flex: 1; }
+  footer.bottom { padding: var(--space-5) 0 var(--space-3); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <p class="eyebrow">2026-09-14 · week 1 · Pīnyīn Sprint</p>
+    <h1>Day 3</h1>
+    <div class="progressbar" aria-hidden="true"><div id="pbar"></div></div>
+    <a class="resume-chip" id="resumechip" href="#quiz">
+      <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      Resume where you left off
+    </a>
+  </header>
+
+  <h2 id="teach">New words — 3</h2>
+<h3>What you wear, and body parts</h3>
+<div class="card">
+<div class="word-head">
+<div class="py pinyin">màozi</div>
+<button class="play" data-key="8e2d5fd5849bf2f9e55cf29b16bd780546fd1451" data-play="8e2d5fd5849bf2f9e55cf29b16bd780546fd1451" aria-label="play màozi">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+</div>
+<p class="word-en">hat, cap</p>
+<div class="example">
+<div class="expy"><span>Zhège màozi shì nǐ de ma?</span>
+<button class="play" data-key="46e63321a27ac1c60082f042114d4bf2e69521cc" data-play="46e63321a27ac1c60082f042114d4bf2e69521cc" aria-label="play example">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
+<p class="meta">Is this hat yours?</p></div>
+</div>
+<div class="card">
+<div class="word-head">
+<div class="py pinyin">ěrduo</div>
+<button class="play" data-key="01f412826a86851faca030deea98e9de8ca509c2" data-play="01f412826a86851faca030deea98e9de8ca509c2" aria-label="play ěrduo">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+</div>
+<p class="word-en">ear</p>
+<div class="note">light second syllable — ěrduo, never ěrduǒ.</div>
+<div class="example">
+<div class="expy"><span>Xiǎo gǒu de ěrduo hěn cháng.</span>
+<button class="play" data-key="75afa90bfc5769405a90eda66babad826c7f1386" data-play="75afa90bfc5769405a90eda66babad826c7f1386" aria-label="play example">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
+<p class="meta">Puppies' ears are long.</p></div>
+</div>
+<div class="card">
+<div class="word-head">
+<div class="py pinyin">pàng</div>
+<button class="play" data-key="02500a66a6c55a312ea694cf1bdd8b1a72dc0ede" data-play="02500a66a6c55a312ea694cf1bdd8b1a72dc0ede" aria-label="play pàng">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+</div>
+<p class="word-en">chubby, fat</p>
+<div class="example">
+<div class="expy"><span>Wǒ zuìjìn pàng le.</span>
+<button class="play" data-key="e18983235c9805383ea502445d48d90cc8794413" data-play="e18983235c9805383ea502445d48d90cc8794413" aria-label="play example">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
+<p class="meta">I've put on weight lately.</p></div>
+</div>
+<h2 id="glue">Glue — grammar</h2>
+<div class="card">
+<h3 style="margin-top:0">A-not-A and tags</h3>
+<p><strong>Template:</strong> Verb-bù-Verb? / statement + hǎo ma?</p>
+<p>Friendly yes/no questions and okay?-checks.</p>
+<div class="example">
+<div class="expy"><span>Zánmen dǎchē qù, hǎo bu hǎo?</span>
+<button class="play" data-key="6484bbc2cc98125b3b5c84f3dc6fc0c9326776f6" data-play="6484bbc2cc98125b3b5c84f3dc6fc0c9326776f6" aria-label="play example">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
+<p class="meta">Let's take a taxi, okay?</p></div>
+<div class="note">Wrong short form on two-syllable verbs: chī bu chīfàn, not chīfàn bu chīfàn.</div>
+</div>
+<h2 id="quiz">Recall quiz</h2>
+<div id="quizhost"></div>
+<h2 id="sweep">Sweep — known base (fast)</h2>
+<p class="meta">Hear it, see it: do you know it cold? No grading games.</p>
+<div id="sweephost"></div>
+<h2 id="links">Best of the week’s research</h2>
+<div class="card"><h3 style="margin-top:0"><a href="https://resources.allsetlearning.com/chinese/grammar/A-not-A_questions" target="_blank" rel="noopener">A-not-A questions — Chinese Grammar Wiki</a></h3><p>The pattern behind today's glue, with word-order detail.</p></div>
+<h2 id="preview">Tomorrow’s first five — guess before you tap</h2>
+<div class="reveal-item card">
+<button type="button"><span class="rv-py pinyin">qúnzi</span><span class="rv-en">skirt</span></button>
+<button class="play" data-key="abc4aeb6dde729d6da76c67d2f1e42e57087ff6e" data-play="abc4aeb6dde729d6da76c67d2f1e42e57087ff6e" aria-label="play qúnzi" style="margin-top:8px">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+</div>
+<div class="reveal-item card">
+<button type="button"><span class="rv-py pinyin">bízi</span><span class="rv-en">nose</span></button>
+<button class="play" data-key="01e8b6f0007a936e15f869a0a94fb5546c5d44ec" data-play="01e8b6f0007a936e15f869a0a94fb5546c5d44ec" aria-label="play bízi" style="margin-top:8px">
+<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+</div>
+
+  <footer class="bottom">
+    <div class="resultbox">
+      <h2 style="border-top:0;padding-top:0;margin-top:0">Done for today</h2>
+      <p class="meta">Copy this line now or Sunday — it is saved on this phone either way.</p>
+      <div id="resultline">— finish the quiz to generate —</div>
+      <div class="result-actions">
+        <button class="primary" id="copybtn">
+          <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy result line
+        </button>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script type="application/json" id="daydata">{"day": 3, "date": "2026-09-14", "week": 1, "quiz": [{"kind": "tap", "prompt": "p\u00e0ng  \u2014  what does it mean?", "choices": [{"label": "ear", "key": "\u011brduo"}, {"label": "chubby, fat", "key": "p\u00e0ng"}, {"label": "\u2014", "key": "\u2014"}, {"label": "hat, cap", "key": "m\u00e0ozi"}], "answer": 1, "audio": "02500a66a6c55a312ea694cf1bdd8b1a72dc0ede", "tag": "p\u00e0ng"}, {"kind": "tap", "prompt": "\u011brduo  \u2014  what does it mean?", "choices": [{"label": "ear", "key": "\u011brduo"}, {"label": "\u2014", "key": "\u2014"}, {"label": "chubby, fat", "key": "p\u00e0ng"}, {"label": "hat, cap", "key": "m\u00e0ozi"}], "answer": 0, "audio": "01f412826a86851faca030deea98e9de8ca509c2", "tag": "\u011brduo"}, {"kind": "type", "prompt": "to choose, pick", "answer": "xu\u01cenz\u00e9", "audio": "576a6d5acf18acc3d03e03922cdb1f24ce192a76", "tag": "xu\u01cenz\u00e9"}, {"kind": "type", "prompt": "kind, sort (measure word)", "answer": "zh\u01d2ng", "audio": "9f3595adc7ea4553f6b44efa481153830e14a860", "tag": "zh\u01d2ng"}, {"kind": "tap", "prompt": "m\u00e0ozi  \u2014  what does it mean?", "choices": [{"label": "hat, cap", "key": "m\u00e0ozi"}, {"label": "ear", "key": "\u011brduo"}, {"label": "\u2014", "key": "\u2014"}, {"label": "chubby, fat", "key": "p\u00e0ng"}], "answer": 0, "audio": "8e2d5fd5849bf2f9e55cf29b16bd780546fd1451", "tag": "m\u00e0ozi"}], "sweep": [{"py": "b\u00e0ba", "en": "dad", "key": "838b6f6d7c93806b12bc2d6842e731635171be3d"}, {"py": "m\u00edngzi", "en": "name", "key": "c955dc65783170ffc90fd9f1db15227f93728dc3"}], "wordsAll": ["m\u00e0ozi", "\u011brduo", "p\u00e0ng", "xu\u01cenz\u00e9", "zh\u01d2ng"]}</script>
+<script type="application/json" id="audiomap">{}</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("daydata").textContent);
+  var AUDIO = JSON.parse(document.getElementById("audiomap").textContent);
+  var STATE_KEY = "zhday_" + DATA.day + "_v1";
+  var RESULTS_KEY = "zhresults_v1";
+  var state = { quizIdx: 0, quizDone: [], sweepIdx: 0, sweepDone: [], drills: {} };
+  try { var saved = JSON.parse(localStorage.getItem(STATE_KEY) || "null"); if (saved) state = saved; } catch (e) {}
+
+  /* ---------- audio (base64 mp3, created on demand, gesture-driven) ---------- */
+  var audioEl = null, audioKey = "";
+  window.zhPlay = function (key) {
+    if (!AUDIO[key]) return;
+    if (audioKey !== key) {
+      if (audioEl) { audioEl.pause(); }
+      audioEl = new Audio("data:audio/mp3;base64," + AUDIO[key]);
+      audioKey = key;
+    }
+    audioEl.currentTime = 0;
+    audioEl.play().catch(function () {});
+  };
+
+  /* ---------- tone-number → tone-mark conversion ---------- */
+  var MARKS = {
+    a: ["ā","á","ǎ","à","a"], o: ["ō","ó","ǒ","ò","o"], e: ["ē","é","ě","è","e"],
+    i: ["ī","í","ǐ","ì","i"], u: ["ū","ú","ǔ","ù","u"], v: ["ǖ","ǘ","ǚ","ǜ","ü"]
+  };
+  function markSyllable(syl, tone) {
+    syl = syl.replace(/v/g, "v");
+    var idx = -1;
+    var ai = syl.indexOf("a"), oi = syl.indexOf("o"), ei = syl.indexOf("e");
+    if (ai >= 0) idx = ai;
+    else if (oi >= 0) idx = oi;
+    else if (ei >= 0) idx = ei;
+    else {
+      var ui = syl.indexOf("u"), ii = syl.indexOf("i");
+      if (ui >= 0 && ii >= 0) idx = Math.max(ui, ii);       /* mark the second of iu/ui */
+      else if (ui >= 0) idx = ui;
+      else if (ii >= 0) idx = ii;
+      else idx = syl.search(/[a-z]/);
+    }
+    if (idx < 0 || tone < 1 || tone > 5) return syl;
+    var ch = syl[idx];
+    if (!MARKS[ch]) return syl;
+    return syl.slice(0, idx) + MARKS[ch][tone - 1] + syl.slice(idx + 1);
+  }
+  function convertNum(input) {
+    return input.toLowerCase().replace(/([a-z]+)([1-5])/g, function (m, syl, tone) {
+      return markSyllable(syl, parseInt(tone, 10));
+    }).replace(/v/g, "ü");
+  }
+  var PYNORM = function (s) { return s.toLowerCase().replace(/\s+/g, " ").trim(); };
+
+  /* ---------- state helpers ---------- */
+  function save() { try { localStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch (e) {} }
+  function storeResult(line) {
+    try {
+      var arr = JSON.parse(localStorage.getItem(RESULTS_KEY) || "[]");
+      arr = arr.filter(function (l) { return l.indexOf("day=" + DATA.day + " ") !== 0 && l !== line; });
+      arr.push(line);
+      localStorage.setItem(RESULTS_KEY, JSON.stringify(arr));
+    } catch (e) {}
+  }
+
+  /* ---------- progress bar ---------- */
+  var quizTotal = DATA.quiz.length, sweepTotal = DATA.sweep.length;
+  function updateProgress() {
+    var done = state.quizDone.length + state.sweepDone.length;
+    var total = quizTotal + sweepTotal;
+    var pct = total ? Math.round(100 * done / total) : 0;
+    document.getElementById("pbar").style.width = pct + "%";
+    var chip = document.getElementById("resumechip");
+    if (done > 0 && done < total) { chip.style.display = "flex"; }
+  }
+
+  /* ---------- quiz engine ---------- */
+  var quizHost = document.getElementById("quizhost");
+  function renderQuiz() {
+    if (!quizHost) return;
+    quizHost.innerHTML = "";
+    var i = state.quizIdx;
+    if (i >= quizTotal) { renderQuizDone(); renderResult(); return; }
+    var item = DATA.quiz[i];
+    var card = document.createElement("div");
+    card.className = "card quiz-card";
+
+    var kind = document.createElement("p"); kind.className = "quiz-kind";
+    kind.textContent = item.kind === "type" ? ("recall " + (i + 1) + "/" + quizTotal) : ("recognize " + (i + 1) + "/" + quizTotal);
+    card.appendChild(kind);
+
+    var prompt = document.createElement("p"); prompt.className = "quiz-prompt";
+    prompt.textContent = item.prompt;
+    card.appendChild(prompt);
+
+    if (item.kind === "type") {
+      var say = document.createElement("p"); say.className = "sayfirst";
+      say.textContent = "Say it out loud first — then type it. Numbers are tones: xuan3ze2.";
+      card.appendChild(say);
+      var box = document.createElement("div"); box.className = "typebox";
+      var input = document.createElement("input");
+      input.setAttribute("inputmode", "text"); input.setAttribute("autocapitalize", "off");
+      input.setAttribute("autocomplete", "off"); input.setAttribute("spellcheck", "false");
+      input.setAttribute("aria-label", "pinyin with tone numbers");
+      var render = document.createElement("div"); render.className = "render";
+      input.addEventListener("input", function () { render.textContent = convertNum(input.value); });
+      var submit = document.createElement("button"); submit.className = "primary";
+      submit.textContent = "Check";
+      submit.style.marginTop = "8px";
+      submit.addEventListener("click", function () { gradeType(input.value, input, submit); });
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); gradeType(input.value, input, submit); } });
+      box.appendChild(input); box.appendChild(render); box.appendChild(submit);
+      card.appendChild(box);
+      quizHost.appendChild(card);
+    } else {
+      var wrap = document.createElement("div"); wrap.className = "choices";
+      item.choices.forEach(function (c, ci) {
+        var b = document.createElement("button"); b.className = "choice";
+        b.textContent = c.label;
+        b.addEventListener("click", function () { gradeChoice(b, ci, item.answer, c.key); });
+        wrap.appendChild(b);
+      });
+      card.appendChild(wrap);
+      quizHost.appendChild(card);
+    }
+  }
+  function fbLine(parent, cls, py, playKey, msg) {
+    var fb = document.createElement("div"); fb.className = "feedback " + cls;
+    if (py) {
+      var line = document.createElement("div"); line.className = "fb-line";
+      var span = document.createElement("span");
+      span.className = "pinyin"; span.textContent = py;
+      line.appendChild(span);
+      if (playKey && AUDIO[playKey]) {
+        var pb = playBtn(playKey);
+        line.appendChild(pb);
+      }
+      fb.appendChild(line);
+    }
+    if (msg) { var m = document.createElement("div"); m.textContent = msg; fb.appendChild(m); }
+    parent.appendChild(fb);
+    return fb;
+  }
+  function gradeType(raw, input, submit) {
+    var item = DATA.quiz[state.quizIdx];
+    var card = quizHost.firstChild;
+    var got = convertNum(raw || "");
+    var target = PYNORM(item.answer);
+    var ok = got.length > 0 && PYNORM(got) === target;
+    var sub = "";
+    if (!ok) {
+      for (var k = 0; k < DATA.wordsAll.length; k++) {
+        var w = DATA.wordsAll[k];
+        if (PYNORM(w) === PYNORM(got) && PYNORM(w) !== target) { sub = w; break; }
+      }
+    }
+    input.disabled = true; submit.disabled = true;
+    recordQuiz(ok, ok ? "" : (sub ? sub + ">" : "") + (got || "?"));
+    fbLine(card, ok ? "ok" : "bad", item.answer, item.audio,
+           ok ? "" : (sub ? "You typed a different real word (" + sub + ")." : "Not quite — hear it, say it twice."));
+    appendNext(card);
+  }
+  function gradeChoice(btn, ci, answerIdx, key) {
+    var item = DATA.quiz[state.quizIdx];
+    var ok = ci === answerIdx;
+    var btns = btn.parentNode.querySelectorAll("button");
+    for (var bi = 0; bi < btns.length; bi++) btns[bi].disabled = true;
+    btn.classList.add(ok ? "correct" : "wrong");
+    if (!ok) btn.parentNode.children[answerIdx].classList.add("correct");
+    recordQuiz(ok, ok ? "" : "");
+    var card = quizHost.firstChild;
+    fbLine(card, ok ? "ok" : "bad", item.tag, item.audio, ok ? "" : "");
+    appendNext(card);
+  }
+  function appendNext(card) {
+    var next = document.createElement("button");
+    next.className = "primary"; next.textContent = "Next";
+    next.style.marginTop = "12px";
+    next.addEventListener("click", function () {
+      state.quizIdx++; save(); updateProgress(); renderQuiz();
+    });
+    card.appendChild(next);
+  }
+  function recordQuiz(ok, detail) {
+    state.quizDone.push({ ok: ok, d: detail }); save(); updateProgress();
+  }
+  function renderQuizDone() {
+    quizHost.innerHTML = "";
+    var done = document.createElement("p");
+    var right = state.quizDone.filter(function (r) { return r.ok; }).length;
+    done.textContent = "Quiz done — " + right + "/" + quizTotal + ".";
+    quizHost.appendChild(done);
+  }
+
+  /* ---------- sweep ---------- */
+  var sweepHost = document.getElementById("sweephost");
+  function renderSweep() {
+    if (!sweepHost) return;
+    sweepHost.innerHTML = "";
+    var i = state.sweepIdx;
+    if (i >= sweepTotal) { var p = document.createElement("p"); p.textContent = "Sweep done."; sweepHost.appendChild(p); renderResult(); return; }
+    var item = DATA.sweep[i];
+    var card = document.createElement("div"); card.className = "card";
+    var row = document.createElement("div"); row.className = "sweep-item";
+    var py = document.createElement("div"); py.className = "py pinyin"; py.textContent = item.py;
+    row.appendChild(py);
+    row.appendChild(playBtn(item.key));
+    card.appendChild(row);
+    var en = document.createElement("p"); en.className = "word-en"; en.textContent = item.en;
+    card.appendChild(en);
+    var btns = document.createElement("div"); btns.className = "sweep-btns";
+    var know = document.createElement("button"); know.className = "primary"; know.textContent = "Know it";
+    var shake = document.createElement("button"); shake.textContent = "Shaky";
+    know.addEventListener("click", function () { state.sweepDone.push(1); state.sweepIdx++; save(); updateProgress(); renderSweep(); });
+    shake.addEventListener("click", function () { state.sweepDone.push(0); state.sweepIdx++; save(); updateProgress(); renderSweep(); });
+    btns.appendChild(know); btns.appendChild(shake);
+    card.appendChild(btns);
+    sweepHost.appendChild(card);
+  }
+
+  /* ---------- result line ---------- */
+  function renderResult() {
+    var el = document.getElementById("resultline");
+    if (!el) return;
+    if (state.quizDone.length < quizTotal || state.sweepDone.length < sweepTotal) return;
+    var qRight = state.quizDone.filter(function (r) { return r.ok; }).length;
+    var sRight = state.sweepDone.reduce(function (a, b) { return a + b; }, 0);
+    var missNames = [];
+    state.quizDone.forEach(function (r, idx) {
+      if (!r.ok) {
+        var nm = DATA.quiz[idx] && DATA.quiz[idx].tag;
+        if (nm && missNames.indexOf(nm) < 0) missNames.push(nm);
+      }
+    });
+    var line = "day=" + DATA.day + " date=" + DATA.date +
+      " rev=" + qRight + "/" + quizTotal +
+      " sweep=" + sRight + "/" + sweepTotal +
+      (missNames.length ? " missed=" + missNames.join(",") : "");
+    el.textContent = line;
+    storeResult(line);
+  }
+  document.getElementById("copybtn").addEventListener("click", function () {
+    var line = document.getElementById("resultline").textContent;
+    if (line.indexOf("day=") !== 0) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(line).then(function () {
+        document.getElementById("copybtn").textContent = "Copied";
+      }).catch(function () { fallbackCopy(line); });
+    } else { fallbackCopy(line); }
+  });
+  function fallbackCopy(line) {
+    var ta = document.createElement("textarea");
+    ta.value = line; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); document.getElementById("copybtn").textContent = "Copied"; } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  /* ---------- play buttons ---------- */
+  function playBtn(key) {
+    var b = document.createElement("button");
+    b.className = "play";
+    b.setAttribute("aria-label", "play audio");
+    b.innerHTML = '<svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>';
+    if (!AUDIO[key]) { b.disabled = true; return b; }
+    b.addEventListener("click", function () { zhPlay(key); });
+    return b;
+  }
+  document.querySelectorAll("button.play[data-play]").forEach(function (b) {
+    if (AUDIO[b.getAttribute("data-play")]) {
+      b.addEventListener("click", function () { zhPlay(b.getAttribute("data-play")); });
+    } else { b.disabled = true; }
+  });
+
+  /* ---------- preview reveals ---------- */
+  document.querySelectorAll(".reveal-item button").forEach(function (b) {
+    b.addEventListener("click", function () { b.parentNode.classList.add("open"); });
+  });
+
+  updateProgress();
+  renderQuiz();
+  renderSweep();
+})();
+</script>
+</body>
+</html>
