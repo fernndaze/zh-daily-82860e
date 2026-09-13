@@ -99,6 +99,16 @@
   .example { margin: var(--space-3) 0 0; padding-top: var(--space-3); border-top: 1px solid var(--border); }
   .example .expy { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-h3); font-weight: 650; }
   .example .expy span { flex: 1; }
+  button.tx {
+    display: block; width: 100%; text-align: left; font: inherit;
+    min-height: 44px; padding: var(--space-2) var(--space-3);
+    background: var(--bg); border: 1px dashed var(--border);
+    border-radius: var(--radius-s); color: var(--text); margin-top: var(--space-2);
+  }
+  button.tx .hint { color: var(--text-2); font-size: var(--fs-meta); display: block; }
+  button.tx .en { display: none; }
+  button.tx.open .en { display: block; }
+  button.tx.open .hint { display: none; }
 
   .quiz-card { text-align: left; }
   .quiz-kind { font-size: var(--fs-meta); color: var(--text-2); margin: 0 0 var(--space-2); }
@@ -173,7 +183,7 @@
 <button class="play" data-key="421e80ba336e512dcefa1766c28ad98f0aeb805b" data-play="421e80ba336e512dcefa1766c28ad98f0aeb805b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I haven't chosen yet.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I haven't chosen yet.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -188,7 +198,7 @@
 <button class="play" data-key="9247bc98ee4ec460243839459d716f4d21905949" data-play="9247bc98ee4ec460243839459d716f4d21905949" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Listen carefully!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Listen carefully!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -203,7 +213,7 @@
 <button class="play" data-key="8cb9a6e66e16d8b0b848b700911522bad27db99d" data-play="8cb9a6e66e16d8b0b848b700911522bad27db99d" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">About work — let's talk later.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">About work — let's talk later.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -218,7 +228,7 @@
 <button class="play" data-key="4ed53a3e9c431d212b272a2ac19df7d53ad851c8" data-play="4ed53a3e9c431d212b272a2ac19df7d53ad851c8" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">The party ends at nine.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">The party ends at nine.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -233,7 +243,7 @@
 <button class="play" data-key="c6bf6ca5bef261c8115a4436b42c16e41c53ea87" data-play="c6bf6ca5bef261c8115a4436b42c16e41c53ea87" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Actually, I don't know either.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Actually, I don't know either.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -248,7 +258,7 @@
 <button class="play" data-key="0502050b8e4b049f4c16139a853677f3df0a4116" data-play="0502050b8e4b049f4c16139a853677f3df0a4116" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">This kind — I don't want it.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">This kind — I don't want it.</span></button></div>
 </div>
 <h3>What you wear, and body parts</h3>
 <div class="card">
@@ -263,7 +273,7 @@
 <button class="play" data-key="46e63321a27ac1c60082f042114d4bf2e69521cc" data-play="46e63321a27ac1c60082f042114d4bf2e69521cc" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Is this hat yours?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Is this hat yours?</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -277,7 +287,7 @@
 <button class="play" data-key="42e409f69a909ce2ab8d0a731ca5492fef6a0a5f" data-play="42e409f69a909ce2ab8d0a731ca5492fef6a0a5f" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Your skirt is really pretty.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Your skirt is really pretty.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -291,7 +301,7 @@
 <button class="play" data-key="9ef9a3614fa69a4c7b7f2f99d98a009bf4d506e2" data-play="9ef9a3614fa69a4c7b7f2f99d98a009bf4d506e2" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I bought a new pair of pants.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I bought a new pair of pants.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -305,7 +315,7 @@
 <button class="play" data-key="619bb7de90869e829b42454f286206132d5999a1" data-play="619bb7de90869e829b42454f286206132d5999a1" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Puppies' ears are long.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Puppies' ears are long.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -319,7 +329,7 @@
 <button class="play" data-key="b5bb1af2f9946cb1b3a23a124b6e35dbf14b7126" data-play="b5bb1af2f9946cb1b3a23a124b6e35dbf14b7126" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">What's up with your nose?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">What's up with your nose?</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -333,7 +343,7 @@
 <button class="play" data-key="16729c1be60d77034a8a93778252205a60d84e37" data-play="16729c1be60d77034a8a93778252205a60d84e37" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I've put on weight lately.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I've put on weight lately.</span></button></div>
 </div>
 <h3>Home and food</h3>
 <div class="card">
@@ -348,7 +358,7 @@
 <button class="play" data-key="c4ababe5ea9cdda88e4c9e4265cd8d39f24ced36" data-play="c4ababe5ea9cdda88e4c9e4265cd8d39f24ced36" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Two beers, please!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Two beers, please!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -362,7 +372,7 @@
 <button class="play" data-key="97808aa404e71d9b05fb482f5a97bf323690761d" data-play="97808aa404e71d9b05fb482f5a97bf323690761d" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Let's get a cake!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Let's get a cake!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -376,7 +386,7 @@
 <button class="play" data-key="7ad365a7606ad97c9d78e9641e1b3f4d5d574974" data-play="7ad365a7606ad97c9d78e9641e1b3f4d5d574974" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">The rice is ready — dinnertime!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">The rice is ready — dinnertime!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -391,7 +401,7 @@
 <button class="play" data-key="d0af484f8ca0ea4ead1bbc5b7eb1d30b21e04ff9" data-play="d0af484f8ca0ea4ead1bbc5b7eb1d30b21e04ff9" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Uncle, which bus goes there?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Uncle, which bus goes there?</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -405,7 +415,7 @@
 <button class="play" data-key="dd9fe65ee03cdc089bb44dcdb38f6c133099b88c" data-play="dd9fe65ee03cdc089bb44dcdb38f6c133099b88c" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">The neighbors are all nice.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">The neighbors are all nice.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -419,7 +429,7 @@
 <button class="play" data-key="f44c4c5eaea3314c4c0441a792e08b3c8825ff66" data-play="f44c4c5eaea3314c4c0441a792e08b3c8825ff66" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Is there a supermarket nearby?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Is there a supermarket nearby?</span></button></div>
 </div>
 <h3>Work and time</h3>
 <div class="card">
@@ -434,7 +444,7 @@
 <button class="play" data-key="5136a4d7ccba5698f07b9d94d2341353d375cc78" data-play="5136a4d7ccba5698f07b9d94d2341353d375cc78" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I've got a meeting this afternoon.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I've got a meeting this afternoon.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -448,7 +458,7 @@
 <button class="play" data-key="eb0cc18b9a662075012874c4347a8afd0a3eca98" data-play="eb0cc18b9a662075012874c4347a8afd0a3eca98" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Hurry, we're going to be late!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Hurry, we're going to be late!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -462,7 +472,7 @@
 <button class="play" data-key="1cb431299cc7d46893ad8f4aea648e82c8cbf14b" data-play="1cb431299cc7d46893ad8f4aea648e82c8cbf14b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I almost showed up late.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I almost showed up late.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -477,7 +487,7 @@
 <button class="play" data-key="34feca2f10ce9f53c50f1d7df727fcd189a41c6d" data-play="34feca2f10ce9f53c50f1d7df727fcd189a41c6d" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">It is crazy hot today!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">It is crazy hot today!</span></button></div>
 </div>
 <h3>Change and background</h3>
 <div class="card">
@@ -492,7 +502,7 @@
 <button class="play" data-key="7b9397a15cf92919800d9be244726afaa88b027b" data-play="7b9397a15cf92919800d9be244726afaa88b027b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Beijing has changed a lot.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Beijing has changed a lot.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -506,7 +516,7 @@
 <button class="play" data-key="d4eb786f1610327488de1bb34b69b6df1d154b26" data-play="d4eb786f1610327488de1bb34b69b6df1d154b26" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I like studying history.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I like studying history.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -521,7 +531,7 @@
 <button class="play" data-key="04044e1a25fa2967ac68a2ccdfbd6cd271eb7160" data-play="04044e1a25fa2967ac68a2ccdfbd6cd271eb7160" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">The environment here is nice.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">The environment here is nice.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -536,7 +546,7 @@
 <button class="play" data-key="aa5d2e37d88c730926a79398104aa1d3b3511209" data-play="aa5d2e37d88c730926a79398104aa1d3b3511209" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">According to him…</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">According to him…</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -551,7 +561,7 @@
 <button class="play" data-key="32a0559de78e3a25ae1ef179572499c6440ceb30" data-play="32a0559de78e3a25ae1ef179572499c6440ceb30" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">This jacket is too old.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">This jacket is too old.</span></button></div>
 </div>
 <h2 id="glue">Glue — grammar</h2>
 <div class="card">
@@ -563,19 +573,19 @@
 <button class="play" data-key="28fc8700fbfd206e60032707e9d7859465b37f5e" data-play="28fc8700fbfd206e60032707e9d7859465b37f5e" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Do you drink coffee?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Do you drink coffee?</span></button></div>
 <div class="example">
 <div class="expy"><span>Zhège guì bu guì?</span>
 <button class="play" data-key="14b0a4fcba0e0d9cbc6df0169d9d6dafc65cdaa7" data-play="14b0a4fcba0e0d9cbc6df0169d9d6dafc65cdaa7" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Is this expensive?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Is this expensive?</span></button></div>
 <div class="example">
 <div class="expy"><span>Wǒmen zǒu ba, hǎo ma?</span>
 <button class="play" data-key="4c619900ccc93a0a8605211a85d089fdf410e2d0" data-play="4c619900ccc93a0a8605211a85d089fdf410e2d0" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Let's go — okay?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Let's go — okay?</span></button></div>
 <h3 style="font-size:var(--fs-h3);margin:var(--space-4) 0 var(--space-2)">Foreigner traps</h3><ul style="margin:0 0 var(--space-2);padding-left:var(--space-5)">
 <li style="margin-bottom:var(--space-2)">Answering with shì — A-not-A wants the verb back: hē! / bù hē, never shì.</li>
 <li style="margin-bottom:var(--space-2)">Two-syllable verbs shorten the FIRST syllable only: chī bu chīfàn is right; chīfàn bu chīfàn is wrong.</li>
@@ -592,13 +602,13 @@
 <button class="play" data-key="b0ed2c602c4f4aa8af6dadd9947b444a5d7ac1fd" data-play="b0ed2c602c4f4aa8af6dadd9947b444a5d7ac1fd" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I'm eating (right now).</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I'm eating (right now).</span></button></div>
 <div class="example">
 <div class="expy"><span>Tāmen zhèngzài kāi huì.</span>
 <button class="play" data-key="6cbcdfc973b39190d64c8449d663a7862e112d8b" data-play="6cbcdfc973b39190d64c8449d663a7862e112d8b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">They're in a meeting right now.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">They're in a meeting right now.</span></button></div>
 <h3 style="font-size:var(--fs-h3);margin:var(--space-4) 0 var(--space-2)">Foreigner traps</h3><ul style="margin:0 0 var(--space-2);padding-left:var(--space-5)">
 <li style="margin-bottom:var(--space-2)">Calquing English 'I am + verb' with shì — shì joins nouns only; shì + verb is never progressive.</li>
 <li style="margin-bottom:var(--space-2)">Habits ≠ zài: 'I'm learning Chinese' as an ongoing project is Wǒ xué Zhōngwén; Wǒ zài xué means right this moment.</li>
@@ -636,17 +646,17 @@
 <div class="expy"><span>Nǐ hē bu hē chá?</span>
 <button class="play" data-key="d51f8083dea85dfd670b100eeb905d87d8e1b4df" data-play="d51f8083dea85dfd670b100eeb905d87d8e1b4df" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
-<p class="meta">Do you drink tea?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Do you drink tea?</span></button></div>
 <div class="card">
 <div class="expy"><span>Zhōumò qù bu qù?</span>
 <button class="play" data-key="1a7244f686d24cc11a34d89738840f8d0a5cbce9" data-play="1a7244f686d24cc11a34d89738840f8d0a5cbce9" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
-<p class="meta">Are you going this weekend or not?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Are you going this weekend or not?</span></button></div>
 <div class="card">
 <div class="expy"><span>Wǒmen zìjǐ zuò fàn, hǎo ma?</span>
 <button class="play" data-key="1da575cd986aee200cb1bcdf2b987550aab445a8" data-play="1da575cd986aee200cb1bcdf2b987550aab445a8" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
-<p class="meta">We'll cook ourselves — okay?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">We'll cook ourselves — okay?</span></button></div>
 <h2 id="preview">Tomorrow’s first five — guess before you tap</h2>
 <div class="reveal-item card">
 <button type="button"><span class="rv-py pinyin">nǐcāi</span><span class="rv-en">guess what</span></button>
@@ -683,6 +693,10 @@
         <button class="primary" id="copybtn">
           <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy result line
+        </button>
+        <button id="copyweek">
+          <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="weekcount">Copy all saved days</span>
         </button>
       </div>
     </div>
@@ -899,7 +913,11 @@
     row.appendChild(py);
     row.appendChild(playBtn(item.key));
     card.appendChild(row);
-    var en = document.createElement("p"); en.className = "word-en"; en.textContent = item.en;
+    var en = document.createElement("button"); en.type = "button"; en.className = "tx";
+    en.setAttribute("aria-label", "show English");
+    var hint = document.createElement("span"); hint.className = "hint"; hint.textContent = "tap for English";
+    var ens = document.createElement("span"); ens.className = "en"; ens.textContent = item.en;
+    en.appendChild(hint); en.appendChild(ens);
     card.appendChild(en);
     var btns = document.createElement("div"); btns.className = "sweep-btns";
     var know = document.createElement("button"); know.className = "primary"; know.textContent = "Know it";
@@ -948,6 +966,27 @@
     document.body.removeChild(ta);
   }
 
+  /* ---------- week export (Sunday paste: every day page can hand over everything) ---------- */
+  function savedLines() {
+    try { return JSON.parse(localStorage.getItem(RESULTS_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function updateWeekCount() {
+    var el = document.getElementById("weekcount");
+    if (!el) return;
+    var n = savedLines().length;
+    el.textContent = n ? ("Copy all " + n + " saved day" + (n > 1 ? "s" : "")) : "No saved days yet";
+  }
+  document.getElementById("copyweek").addEventListener("click", function () {
+    var lines = savedLines();
+    if (!lines.length) return;
+    var text = lines.join("\n");
+    var btn = this;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = "Copied — paste to Claude"; setTimeout(updateWeekCount, 1500); }, function () { fallbackCopy(text); });
+    } else { fallbackCopy(text); btn.textContent = "Copied — paste to Claude"; setTimeout(updateWeekCount, 1500); }
+  });
+  updateWeekCount();
+
   /* ---------- play buttons ---------- */
   function playBtn(key) {
     var b = document.createElement("button");
@@ -967,6 +1006,11 @@
   /* ---------- preview reveals ---------- */
   document.querySelectorAll(".reveal-item button").forEach(function (b) {
     b.addEventListener("click", function () { b.parentNode.classList.add("open"); });
+  });
+
+  /* ---------- tap-to-reveal English ---------- */
+  document.querySelectorAll("button.tx").forEach(function (b) {
+    b.addEventListener("click", function () { b.classList.toggle("open"); });
   });
 
   updateProgress();

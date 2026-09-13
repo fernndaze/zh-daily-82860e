@@ -99,6 +99,16 @@
   .example { margin: var(--space-3) 0 0; padding-top: var(--space-3); border-top: 1px solid var(--border); }
   .example .expy { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-h3); font-weight: 650; }
   .example .expy span { flex: 1; }
+  button.tx {
+    display: block; width: 100%; text-align: left; font: inherit;
+    min-height: 44px; padding: var(--space-2) var(--space-3);
+    background: var(--bg); border: 1px dashed var(--border);
+    border-radius: var(--radius-s); color: var(--text); margin-top: var(--space-2);
+  }
+  button.tx .hint { color: var(--text-2); font-size: var(--fs-meta); display: block; }
+  button.tx .en { display: none; }
+  button.tx.open .en { display: block; }
+  button.tx.open .hint { display: none; }
 
   .quiz-card { text-align: left; }
   .quiz-kind { font-size: var(--fs-meta); color: var(--text-2); margin: 0 0 var(--space-2); }
@@ -172,7 +182,7 @@
 <button class="play" data-key="33c399cfbb08abfe9c759f64417a18fc5999648e" data-play="33c399cfbb08abfe9c759f64417a18fc5999648e" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I take the subway to work every day.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I take the subway to work every day.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -186,7 +196,7 @@
 <button class="play" data-key="40efcbd7742ba470c1e7b4dcd7962f3b93b60c5f" data-play="40efcbd7742ba470c1e7b4dcd7962f3b93b60c5f" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">The bullet train gets you there in half an hour.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">The bullet train gets you there in half an hour.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -200,7 +210,7 @@
 <button class="play" data-key="211b96b483ab936da706ea4910378803b25d50e8" data-play="211b96b483ab936da706ea4910378803b25d50e8" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I flat-share with a friend.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I flat-share with a friend.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -214,7 +224,7 @@
 <button class="play" data-key="299589b0b0927fc9986a9099433c7a6cf239905c" data-play="299589b0b0927fc9986a9099433c7a6cf239905c" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Pushing a membership on me again? No way!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Pushing a membership on me again? No way!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -228,7 +238,7 @@
 <button class="play" data-key="24fe81b9bb6ad39d8fdcb673bb4dc4bb52a5824a" data-play="24fe81b9bb6ad39d8fdcb673bb4dc4bb52a5824a" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">This shop ships free.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">This shop ships free.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -243,7 +253,7 @@
 <button class="play" data-key="85497f98145248ea8a41909e7d6a840ed8090c2e" data-play="85497f98145248ea8a41909e7d6a840ed8090c2e" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Wanna split an order?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Wanna split an order?</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -258,7 +268,7 @@
 <button class="play" data-key="15478fbb5780cc38c8e430f0674756fa06e8a3a0" data-play="15478fbb5780cc38c8e430f0674756fa06e8a3a0" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">The bus takes half an hour.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">The bus takes half an hour.</span></button></div>
 </div>
 <h3>Food and body</h3>
 <div class="card">
@@ -274,7 +284,7 @@
 <button class="play" data-key="186ca8cf60f19bec51af6bd06dd7671f19142ab5" data-play="186ca8cf60f19bec51af6bd06dd7671f19142ab5" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Can we dine in now?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Can we dine in now?</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -289,7 +299,7 @@
 <button class="play" data-key="d618c5bed4246a7e8ebebdd1f037efd400699902" data-play="d618c5bed4246a7e8ebebdd1f037efd400699902" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Chī la, nǐ ne? — Eaten yet? — Yep, you?</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Chī la, nǐ ne? — Eaten yet? — Yep, you?</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -304,7 +314,7 @@
 <button class="play" data-key="f2ffd93814cd9bcdecc3e6e8607a7dde275a7cd7" data-play="f2ffd93814cd9bcdecc3e6e8607a7dde275a7cd7" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I've gained this month.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I've gained this month.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -319,7 +329,7 @@
 <button class="play" data-key="986966dfe2bae1f9070ac1b923820cf806446cf3" data-play="986966dfe2bae1f9070ac1b923820cf806446cf3" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">It's a bit cold today.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">It's a bit cold today.</span></button></div>
 </div>
 <h3>Hype — praise and intensity</h3>
 <div class="card">
@@ -334,7 +344,7 @@
 <button class="play" data-key="cb8818b089e64f3ae77eb365e12997cc22aaee39" data-play="cb8818b089e64f3ae77eb365e12997cc22aaee39" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Awesome! You're really something.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Awesome! You're really something.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -349,7 +359,7 @@
 <button class="play" data-key="ceb5379c6086e394d7675ab030b3328fad5cbb83" data-play="ceb5379c6086e394d7675ab030b3328fad5cbb83" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Badass!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Badass!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -363,7 +373,7 @@
 <button class="play" data-key="ac12bc958e621aef20904113c1f9a845b3cef734" data-play="ac12bc958e621aef20904113c1f9a845b3cef734" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">This dish — unreal!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">This dish — unreal!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -378,7 +388,7 @@
 <button class="play" data-key="d80f4b71cb2c756984e78c8e9a462c0c772e0ae7" data-play="d80f4b71cb2c756984e78c8e9a462c0c772e0ae7" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">My new phone — amazeballs!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">My new phone — amazeballs!</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -393,7 +403,7 @@
 <button class="play" data-key="7ff23887a79268525a25a73f81334bf22e17ce12" data-play="7ff23887a79268525a25a73f81334bf22e17ce12" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I'm done / I bow down!</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I'm done / I bow down!</span></button></div>
 </div>
 <h3>Cringe and complaint</h3>
 <div class="card">
@@ -408,7 +418,7 @@
 <button class="play" data-key="37bddc625abcadf2095e243eb094cc5d5d6ed24b" data-play="37bddc625abcadf2095e243eb094cc5d5d6ed24b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Nobody laughed — instant cringe.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Nobody laughed — instant cringe.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -422,7 +432,7 @@
 <button class="play" data-key="47e6f858059eed09201755b6d8f717fd9c7d362b" data-play="47e6f858059eed09201755b6d8f717fd9c7d362b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Such an awkward chat.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Such an awkward chat.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -437,7 +447,7 @@
 <button class="play" data-key="b235755efac968e0fdde7725030ca21eac41d28b" data-play="b235755efac968e0fdde7725030ca21eac41d28b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Greeted the wrong person — died on the spot.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Greeted the wrong person — died on the spot.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -451,7 +461,7 @@
 <button class="play" data-key="fafd893f4d714138449b1f2107d54e25f81fee58" data-play="fafd893f4d714138449b1f2107d54e25f81fee58" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">He's late again — I'm speechless.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">He's late again — I'm speechless.</span></button></div>
 </div>
 <div class="card">
 <div class="word-head">
@@ -465,7 +475,7 @@
 <button class="play" data-key="e0f53afd3973ef5ae4199a8993ab50098e03cfc3" data-play="e0f53afd3973ef5ae4199a8993ab50098e03cfc3" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I need to vent about my boss.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I need to vent about my boss.</span></button></div>
 </div>
 <h3>More words</h3>
 <div class="card">
@@ -486,13 +496,13 @@
 <button class="play" data-key="8bb3e57579f2971e7d41fe755e3a3cc26a285984" data-play="8bb3e57579f2971e7d41fe755e3a3cc26a285984" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">I was off by five (early!).</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">I was off by five (early!).</span></button></div>
 <div class="example">
 <div class="expy"><span>Tā shí diǎn cái qǐ chuáng.</span>
 <button class="play" data-key="e39a7a8d9bf4ec6fe76bcf45b0bbb392325d86c5" data-play="e39a7a8d9bf4ec6fe76bcf45b0bbb392325d86c5" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">He didn't get up till ten (late!).</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">He didn't get up till ten (late!).</span></button></div>
 <h3 style="font-size:var(--fs-h3);margin:var(--space-4) 0 var(--space-2)">Foreigner traps</h3><ul style="margin:0 0 var(--space-2);padding-left:var(--space-5)">
 <li style="margin-bottom:var(--space-2)">Reading them as plain 'then' — the whole point is attitude: jiù brags 'early/effortless', cái grumbles 'late/only-then'.</li>
 <li style="margin-bottom:var(--space-2)">With a time word, jiù/cái sits AFTER it: bā diǎn jiù shuì le is right; jiù bā diǎn shuì le is wrong.</li>
@@ -509,13 +519,13 @@
 <button class="play" data-key="9d6b9057135b292adc6e1406b8ad598f2969423b" data-play="9d6b9057135b292adc6e1406b8ad598f2969423b" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">Come again tomorrow.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Come again tomorrow.</span></button></div>
 <div class="example">
 <div class="expy"><span>Tā yòu wàngjì le.</span>
 <button class="play" data-key="11fce71f1588fb585c1118f3f91609b983054241" data-play="11fce71f1588fb585c1118f3f91609b983054241" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
 </div>
-<p class="meta">He forgot again.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">He forgot again.</span></button></div>
 <h3 style="font-size:var(--fs-h3);margin:var(--space-4) 0 var(--space-2)">Foreigner traps</h3><ul style="margin:0 0 var(--space-2);padding-left:var(--space-5)">
 <li style="margin-bottom:var(--space-2)">Promising with yòu: Wǒ yòu qù = 'I went AGAIN' (past) — promising a repeat visit is xià cì zài qù.</li>
 <li style="margin-bottom:var(--space-2)">zài + le for future repeats is broken — zài lái le doesn't work; the le belongs to yòu's past events.</li>
@@ -554,17 +564,17 @@
 <div class="expy"><span>Tā liù diǎn jiù qǐ le.</span>
 <button class="play" data-key="8b100265a53264eec3080b3088fb3cc823b1b83a" data-play="8b100265a53264eec3080b3088fb3cc823b1b83a" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
-<p class="meta">He was up by six (early!).</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">He was up by six (early!).</span></button></div>
 <div class="card">
 <div class="expy"><span>Nǐ yòu wàngjì le!</span>
 <button class="play" data-key="01e2d067847f4bce0ff0adc659766e64ec003fa4" data-play="01e2d067847f4bce0ff0adc659766e64ec003fa4" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
-<p class="meta">You forgot AGAIN.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">You forgot AGAIN.</span></button></div>
 <div class="card">
 <div class="expy"><span>Lèi sǐ le, jīntiān bù xiǎng dòng le.</span>
 <button class="play" data-key="3e0eb42d5ebab2b4f779eccb97662593883cdbbd" data-play="3e0eb42d5ebab2b4f779eccb97662593883cdbbd" aria-label="play example">
 <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></button></div>
-<p class="meta">Dead tired — not moving today.</p></div>
+<button type="button" class="tx" aria-label="show English"><span class="hint">tap for English</span><span class="en">Dead tired — not moving today.</span></button></div>
 <h2 id="preview">Tomorrow’s first five — guess before you tap</h2>
 <div class="reveal-item card">
 <button type="button"><span class="rv-py pinyin">nèijuǎn</span><span class="rv-en">rat-race competition</span></button>
@@ -601,6 +611,10 @@
         <button class="primary" id="copybtn">
           <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy result line
+        </button>
+        <button id="copyweek">
+          <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="weekcount">Copy all saved days</span>
         </button>
       </div>
     </div>
@@ -817,7 +831,11 @@
     row.appendChild(py);
     row.appendChild(playBtn(item.key));
     card.appendChild(row);
-    var en = document.createElement("p"); en.className = "word-en"; en.textContent = item.en;
+    var en = document.createElement("button"); en.type = "button"; en.className = "tx";
+    en.setAttribute("aria-label", "show English");
+    var hint = document.createElement("span"); hint.className = "hint"; hint.textContent = "tap for English";
+    var ens = document.createElement("span"); ens.className = "en"; ens.textContent = item.en;
+    en.appendChild(hint); en.appendChild(ens);
     card.appendChild(en);
     var btns = document.createElement("div"); btns.className = "sweep-btns";
     var know = document.createElement("button"); know.className = "primary"; know.textContent = "Know it";
@@ -866,6 +884,27 @@
     document.body.removeChild(ta);
   }
 
+  /* ---------- week export (Sunday paste: every day page can hand over everything) ---------- */
+  function savedLines() {
+    try { return JSON.parse(localStorage.getItem(RESULTS_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function updateWeekCount() {
+    var el = document.getElementById("weekcount");
+    if (!el) return;
+    var n = savedLines().length;
+    el.textContent = n ? ("Copy all " + n + " saved day" + (n > 1 ? "s" : "")) : "No saved days yet";
+  }
+  document.getElementById("copyweek").addEventListener("click", function () {
+    var lines = savedLines();
+    if (!lines.length) return;
+    var text = lines.join("\n");
+    var btn = this;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = "Copied — paste to Claude"; setTimeout(updateWeekCount, 1500); }, function () { fallbackCopy(text); });
+    } else { fallbackCopy(text); btn.textContent = "Copied — paste to Claude"; setTimeout(updateWeekCount, 1500); }
+  });
+  updateWeekCount();
+
   /* ---------- play buttons ---------- */
   function playBtn(key) {
     var b = document.createElement("button");
@@ -885,6 +924,11 @@
   /* ---------- preview reveals ---------- */
   document.querySelectorAll(".reveal-item button").forEach(function (b) {
     b.addEventListener("click", function () { b.parentNode.classList.add("open"); });
+  });
+
+  /* ---------- tap-to-reveal English ---------- */
+  document.querySelectorAll("button.tx").forEach(function (b) {
+    b.addEventListener("click", function () { b.classList.toggle("open"); });
   });
 
   updateProgress();
