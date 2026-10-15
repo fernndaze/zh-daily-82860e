@@ -70,8 +70,8 @@
 <body>
 <main>
   <h1>Pīnyīn Sprint</h1>
-  <p class="meta">Evening · ~15 min · resumable anywhere in a day</p>
-  <p class="meta" id="counter">148 words known · 2,852 to go — cumulative, never resets</p>
+  <p class="meta">Evening · one page a day · each page shows its real time · resumable</p>
+  <p class="meta" id="counter">Re-entry week · review only · start with Day 15</p>
 
   <h2>Days</h2>
   <div class="card">
@@ -84,25 +84,32 @@
       <li><a href="cq-guide.html"><span>Guide index — Standard vs Chongqing</span><span class="when">audio reference</span></a></li>
       <li><a href="cq-tones.html"><span>Tones</span><span class="when">A/B audio</span></a></li>
       <li><a href="cq-consonants.html"><span>Consonants</span><span class="when">A/B audio</span></a></li>
+      <li><a href="cq-vowels.html"><span>Vowels</span><span class="when">A/B audio</span></a></li>
+      <li><a href="cq-grammar.html"><span>Grammar &amp; particles</span><span class="when">A/B audio</span></a></li>
       <li><a href="cq-words.html"><span>Signature words</span><span class="when">A/B audio</span></a></li>
       <li><a href="cq-mistakes.html"><span>Foreigner fixes</span><span class="when">wrong → right</span></a></li>
       <li><a href="cq-northern.html"><span>Northern forms on TV</span><span class="when">passive recognition</span></a></li>
     </ul>
   </div>
 
-  <h2>Sunday paste</h2>
+  <h2>Results</h2>
   <div class="card">
-    <p class="meta">Every result line saved on this phone, newest last. Copy all → paste to Claude on Sunday.</p>
+    <p class="meta">Every result line saved on this phone, newest last. <strong>Send</strong> files them on GitHub — the weekly build reads them from there. Nothing here is ever deleted.</p>
     <div id="resultlines">nothing yet</div>
-    <button class="primary" id="copyall">Copy all result lines</button>
-    <button id="clearall" style="margin-top:8px">Clear saved lines</button>
+    <button class="primary" id="sendall">Send results</button>
+    <div id="sendparts"></div>
+    <button id="copyall" style="margin-top:8px">Copy all result lines</button>
   </div>
 </main>
 <script>
 (function () {
   "use strict";
-  var DAYS = [{"file": "sunday.html", "date": "2026-09-20", "label": "Sunday consolidation"}, {"file": "day09.html", "date": "2026-09-21", "label": "Day 9"}, {"file": "day10.html", "date": "2026-09-22", "label": "Day 10"}, {"file": "day11.html", "date": "2026-09-23", "label": "Day 11"}, {"file": "day12.html", "date": "2026-09-24", "label": "Day 12"}, {"file": "day13.html", "date": "2026-09-25", "label": "Day 13"}, {"file": "day14.html", "date": "2026-09-26", "label": "Day 14"}, {"file": "sunday-s2.html", "date": "2026-09-27", "label": "Sunday consolidation"}];
+  var DAYS = [{"file": "day15.html", "date": "2026-10-15", "label": "Day 15 \u2014 review only", "day": "15", "minutes": 30}, {"file": "day16.html", "date": "2026-10-16", "label": "Day 16 \u2014 review only", "day": "16", "minutes": 30}, {"file": "day17.html", "date": "2026-10-17", "label": "Day 17 \u2014 review only", "day": "17", "minutes": 30}, {"file": "day18.html", "date": "2026-10-18", "label": "Day 18 \u2014 review only", "day": "18", "minutes": 30}, {"file": "day19.html", "date": "2026-10-19", "label": "Day 19 \u2014 review only", "day": "19", "minutes": 30}, {"file": "day20.html", "date": "2026-10-20", "label": "Day 20 \u2014 review only", "day": "20", "minutes": 30}, {"file": "s2.html", "date": "2026-10-21", "label": "Sunday \u2014 consolidation (S2)", "day": "S2", "minutes": 39}];
+  var REPO = "zh-daily-82860e";
   var list = document.getElementById("daylist");
+  var savedArr = [];
+  try { savedArr = JSON.parse(localStorage.getItem("zhresults_v1") || "[]"); } catch (e) {}
+  function isDone(day) { return savedArr.some(function (l) { return l.indexOf("day=" + day + " ") === 0; }); }
   DAYS.forEach(function (d) {
     var li = document.createElement("li");
     var a = document.createElement("a");
@@ -111,7 +118,8 @@
     name.textContent = d.label;
     var when = document.createElement("span");
     when.className = "when";
-    when.textContent = d.date;
+    when.textContent = (isDone(d.day) ? "done \u2713 \u00b7 " : "") + d.date + (d.minutes ? " \u00b7 ~" + d.minutes + " min" : "");
+    if (isDone(d.day)) a.style.opacity = ".6";
     a.appendChild(name); a.appendChild(when);
     li.appendChild(a); list.appendChild(li);
   });
@@ -139,11 +147,32 @@
     this.textContent = "Copied";
     var b = this; setTimeout(function () { b.textContent = "Copy all result lines"; }, 1500);
   });
-  document.getElementById("clearall").addEventListener("click", function () {
-    if (confirm("Clear all saved result lines from this phone?")) {
-      localStorage.removeItem("zhresults_v1");
-      render();
+  function issueUrls(lines) {
+    var base = "https://github.com/fernndaze/" + REPO + "/issues/new?labels=results&title=";
+    var urls = [], chunk = [];
+    function flush() {
+      if (!chunk.length) return;
+      var t = "results " + chunk[0].split(" ")[0] + (chunk.length > 1 ? " \u2026 " + chunk[chunk.length - 1].split(" ")[0] : "");
+      urls.push(base + encodeURIComponent(t) + "&body=" + encodeURIComponent(chunk.join("\n")));
+      chunk = [];
     }
+    lines.forEach(function (l) {
+      chunk.push(l);
+      if (encodeURIComponent(chunk.join("\n")).length > 6000) { chunk.pop(); flush(); chunk.push(l); }
+    });
+    flush();
+    return urls;
+  }
+  document.getElementById("sendall").addEventListener("click", function () {
+    var arr; try { arr = JSON.parse(localStorage.getItem("zhresults_v1") || "[]"); } catch (e) { arr = []; }
+    if (!arr.length) { this.textContent = "Nothing saved yet"; return; }
+    var urls = issueUrls(arr);
+    if (urls.length === 1) { window.location.href = urls[0]; return; }
+    var host = document.getElementById("sendparts"); host.innerHTML = "";
+    urls.forEach(function (u, i) {
+      var a = document.createElement("a"); a.href = u; a.textContent = "Send part " + (i + 1) + " of " + urls.length;
+      a.style.cssText = "display:block;margin-top:8px"; host.appendChild(a);
+    });
   });
 })();
 </script>
