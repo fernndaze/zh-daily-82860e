@@ -189,7 +189,7 @@
       <div class="result-actions" style="margin-bottom:8px">
         <button class="primary" id="sendgh">Send results</button>
       </div>
-      <p class="meta" id="sendhint">Opens GitHub (sign in once) → tap <em>Submit new issue</em> → come back with ← Hub. Only unsent days are sent.</p>
+      <p class="meta" id="sendhint">Opens GitHub (sign in once) → tap <em>Submit new issue</em> — nothing is sent until you do. Tapping again re-sends (harmless).</p>
       <div id="sendparts"></div>
       <div class="result-actions">
         <button id="copybtn">
@@ -648,7 +648,8 @@
   document.getElementById("sendgh").addEventListener("click", function () {
     var lines = unsentLines();
     if (!savedLines().length) { this.textContent = "Finish the quiz first"; return; }
-    if (!lines.length) { this.textContent = "All sent \u2713"; return; }
+    if (!lines.length) lines = savedLines();  /* all marked sent: re-send everything — the page can't see
+                                                  whether GitHub's Submit was tapped; ingest dedupes */
     markSent(lines);
     var urls = issueUrls(lines);
     if (urls.length === 1) { window.location.href = urls[0]; return; }

@@ -97,7 +97,7 @@
     <p class="meta">Every result line saved on this phone, newest last. <strong>Send</strong> files them on GitHub — the weekly build reads them from there. Nothing here is ever deleted.</p>
     <div id="resultlines">nothing yet</div>
     <button class="primary" id="sendall">Send results</button>
-    <p class="meta">Opens GitHub (sign in once) → tap <em>Submit new issue</em>. Only unsent days are sent.</p>
+    <p class="meta">Opens GitHub (sign in once) → tap <em>Submit new issue</em> — nothing is sent until you do. Tapping again re-sends (harmless).</p>
     <div id="sendparts"></div>
     <button id="copyall" style="margin-top:8px">Copy all result lines</button>
   </div>
@@ -168,8 +168,8 @@
     var arr; try { arr = JSON.parse(localStorage.getItem("zhresults_v1") || "[]"); } catch (e) { arr = []; }
     if (!arr.length) { this.textContent = "Nothing saved yet"; return; }
     var sent = []; try { sent = JSON.parse(localStorage.getItem("zhsent_v1") || "[]"); } catch (e) {}
-    arr = arr.filter(function (l) { return sent.indexOf(l) < 0; });
-    if (!arr.length) { this.textContent = "All sent \u2713"; return; }
+    var unsent = arr.filter(function (l) { return sent.indexOf(l) < 0; });
+    if (unsent.length) arr = unsent;  /* else re-send all: Submit may not have been tapped; ingest dedupes */
     try { localStorage.setItem("zhsent_v1", JSON.stringify(sent.concat(arr))); } catch (e) {}
     var urls = issueUrls(arr);
     if (urls.length === 1) { window.location.href = urls[0]; return; }
