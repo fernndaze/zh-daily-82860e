@@ -97,6 +97,7 @@
     <p class="meta">Every result line saved on this phone, newest last. <strong>Send</strong> files them on GitHub — the weekly build reads them from there. Nothing here is ever deleted.</p>
     <div id="resultlines">nothing yet</div>
     <button class="primary" id="sendall">Send results</button>
+    <p class="meta">Opens GitHub (sign in once) → tap <em>Submit new issue</em>. Only unsent days are sent.</p>
     <div id="sendparts"></div>
     <button id="copyall" style="margin-top:8px">Copy all result lines</button>
   </div>
@@ -104,7 +105,7 @@
 <script>
 (function () {
   "use strict";
-  var DAYS = [{"file": "day15.html", "date": "2026-10-15", "label": "Day 15 \u2014 review only", "day": "15", "minutes": 30}, {"file": "day16.html", "date": "2026-10-16", "label": "Day 16 \u2014 review only", "day": "16", "minutes": 30}, {"file": "day17.html", "date": "2026-10-17", "label": "Day 17 \u2014 review only", "day": "17", "minutes": 30}, {"file": "day18.html", "date": "2026-10-18", "label": "Day 18 \u2014 review only", "day": "18", "minutes": 30}, {"file": "day19.html", "date": "2026-10-19", "label": "Day 19 \u2014 review only", "day": "19", "minutes": 30}, {"file": "day20.html", "date": "2026-10-20", "label": "Day 20 \u2014 review only", "day": "20", "minutes": 30}, {"file": "s2.html", "date": "2026-10-21", "label": "Sunday \u2014 consolidation (S2)", "day": "S2", "minutes": 39}];
+  var DAYS = [{"file": "day15.html", "date": "2026-10-15", "label": "Day 15 \u2014 review only", "day": "15", "minutes": 20}, {"file": "day16.html", "date": "2026-10-16", "label": "Day 16 \u2014 review only", "day": "16", "minutes": 20}, {"file": "day17.html", "date": "2026-10-17", "label": "Day 17 \u2014 review only", "day": "17", "minutes": 20}, {"file": "day18.html", "date": "2026-10-18", "label": "Day 18 \u2014 review only", "day": "18", "minutes": 20}, {"file": "day19.html", "date": "2026-10-19", "label": "Day 19 \u2014 review only", "day": "19", "minutes": 20}, {"file": "day20.html", "date": "2026-10-20", "label": "Day 20 \u2014 review only", "day": "20", "minutes": 20}, {"file": "s2.html", "date": "2026-10-21", "label": "Sunday \u2014 consolidation (S2)", "day": "S2", "minutes": 39}];
   var REPO = "zh-daily-82860e";
   var list = document.getElementById("daylist");
   var savedArr = [];
@@ -166,6 +167,10 @@
   document.getElementById("sendall").addEventListener("click", function () {
     var arr; try { arr = JSON.parse(localStorage.getItem("zhresults_v1") || "[]"); } catch (e) { arr = []; }
     if (!arr.length) { this.textContent = "Nothing saved yet"; return; }
+    var sent = []; try { sent = JSON.parse(localStorage.getItem("zhsent_v1") || "[]"); } catch (e) {}
+    arr = arr.filter(function (l) { return sent.indexOf(l) < 0; });
+    if (!arr.length) { this.textContent = "All sent \u2713"; return; }
+    try { localStorage.setItem("zhsent_v1", JSON.stringify(sent.concat(arr))); } catch (e) {}
     var urls = issueUrls(arr);
     if (urls.length === 1) { window.location.href = urls[0]; return; }
     var host = document.getElementById("sendparts"); host.innerHTML = "";
